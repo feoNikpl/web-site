@@ -1,3 +1,36 @@
+<?php
+		$str="";
+		$ocount="";
+		if ($_POST["text"] == ""){
+			$str = "";
+			$ocount = "";
+		} else{
+			$str = $_POST["text"];
+			$arr = explode(" ", $str);
+			$new_arr = [];
+			$i = 0;
+			$ocount = 0;
+			foreach($arr as $word){
+				$new_arr[] = $word;
+				
+				$chars = preg_split('//', $new_arr[$i], -1, PREG_SPLIT_NO_EMPTY);
+				foreach($chars as $ch)
+					if ($ch == "o" ||  $ch =="O"){
+						++$ocount;
+					}
+				if (isset($chars[2])){
+					$chars[2] = "<span style='color:#800080;'>$chars[2]</span>";
+				}
+				$new_arr[$i] = implode("",$chars);
+				
+				if($i % 3 == 2)
+					$new_arr[$i] = strtoupper ($new_arr[$i]);
+				$i++;
+			}	
+			$str = implode(" ", $new_arr);
+			$ocount =  " количество букв О: ".$ocount;
+		}
+ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +40,7 @@
 		<link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/Main.css">
 		<link rel="stylesheet" href="css/footer.css">
+		<link rel="stylesheet" href="css/content.css">
         <title>Travel.me</title>
     </head>
     <body>
@@ -22,7 +56,6 @@
 							 <a class="m_link" href="content.html">Контент</a> 
 							 <a class="m_link" href="About.html">О проекте</a> 
 							 <a class="m_link" href="contact.html">Контакты</a> 
-							<a class="m_link" href="tasks.php">Лабы</a> 
 						</nav>
 						<div class="search">
 							<form>
@@ -37,32 +70,19 @@
             </div>
         </header>
 		<main>
-			<a class="main_intro"  href="content.html" >
-				<div class="main_text">Основной контент</div>
-			</a>
-        	<div class="conteiner">
-             	<div class="main_title">
-					Инвестиции в поездки это инвестиции в себя	
-					<div class="smain_title"> 
-						Мэттью Карстен
-					</div>
-				</div> 
-				<h1>Последние новости</h1>
-				<div class="latest_news">
-					<a class="blog_prewew" href="Krakow.html">
-						<img class="images_prewew" src="css/images/krakowNews.jpg"/>css/
-						<h2>Краков</h2>
-					</a>
-					<a class="blog_prewew" href="https://www.google.com/">
-						<img class="images_prewew" src="css/images/WarszawaNews.jpg"/>
-						<h2>Варшава</h2>
-					</a>
-					<a class="blog_prewew" href="https://www.google.com/">
-						<img class="images_prewew" src="css/images/rigaNews.jpg"/>
-						<h2>Рига</h2>
-					</a>
-				</div>
-            </div>
+			<div class="conteiner">
+				<h1>Лабораторная работа №2</h1>
+				<b>
+					<p>в произвольном тексте, введенном через форму, каждое третье слово перевести в верхний регистр, каждую третью букву всех слов сделать фиолетовой, подсчитать общее количество встречающихся в тексте букв "о" и "О"</p>
+				</b>
+				<form class="comment" action="" method="post">
+					<textarea class="form_comment" name="text"></textarea>
+					<p><?php echo $str; ?></p>
+					<p><?php echo $ocount; ?></p>
+					<button class="subscribe" name="lab2">отправить</button>
+				</form>
+				<a href="lab3.php">следующая лабораторная№3</a>
+			</div>
 		</main>
          <footer>
             <div class="conteiner">
