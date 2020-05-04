@@ -1,3 +1,28 @@
+<?php
+$str="";
+$new_arr="";
+if (count($_FILES['userfiles']) != 0){
+	$arr = $_FILES['userfiles']['name'];
+	$fileContent = file_get_contents($arr);
+    $email = '/([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,3}$/';
+	$arr = explode(" ",$fileContent);
+	$i = 0;
+	$j = 0;
+	foreach($arr as $word){
+		if(preg_match($email,$word)){
+			$new_arr[$i] = "<a  href='mailto:$word' style='color:Red;'>$word</a>";
+			$arr2[$j] = $word;
+			$j ++;
+		}else{
+			$new_arr[$i] = $word;
+		}		
+		$i++;
+	}
+	$str = implode(" ", $new_arr);
+	$new_arr = implode("\n", $arr2);
+}
+
+ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +32,7 @@
 		<link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/Main.css">
 		<link rel="stylesheet" href="css/footer.css">
+		<link rel="stylesheet" href="css/content.css">
         <title>Travel.me</title>
     </head>
     <body>
@@ -22,7 +48,6 @@
 							 <a class="m_link" href="content.html">Контент</a> 
 							 <a class="m_link" href="About.html">О проекте</a> 
 							 <a class="m_link" href="contact.html">Контакты</a> 
-							<a class="m_link" href="tasks.php">Лабы</a> 
 						</nav>
 						<div class="search">
 							<form>
@@ -37,32 +62,20 @@
             </div>
         </header>
 		<main>
-			<a class="main_intro"  href="content.html" >
-				<div class="main_text">Основной контент</div>
-			</a>
-        	<div class="conteiner">
-             	<div class="main_title">
-					Инвестиции в поездки это инвестиции в себя	
-					<div class="smain_title"> 
-						Мэттью Карстен
-					</div>
-				</div> 
-				<h1>Последние новости</h1>
-				<div class="latest_news">
-					<a class="blog_prewew" href="Krakow.html">
-						<img class="images_prewew" src="css/images/krakowNews.jpg"/>css/
-						<h2>Краков</h2>
-					</a>
-					<a class="blog_prewew" href="https://www.google.com/">
-						<img class="images_prewew" src="css/images/WarszawaNews.jpg"/>
-						<h2>Варшава</h2>
-					</a>
-					<a class="blog_prewew" href="https://www.google.com/">
-						<img class="images_prewew" src="css/images/rigaNews.jpg"/>
-						<h2>Рига</h2>
-					</a>
-				</div>
-            </div>
+			<div class="conteiner">
+				<h1>Лабораторная работа №4</h1>
+				<b>
+					<p>в произвольном тексте все e-mail адреса вывести красным цветом и привести к виду "a  href="mailto:EMAIL>EMAIL  /a". Дополнительно, в отдельном блоке вывести отдельно все e-mail адреса.Текст загружать из файла.</p>
+				</b>
+				<form class="comment" action="" method="post" enctype="multipart/form-data">
+					<input type="file" name="userfiles" placeholder="введите имя файла"><br>
+					<textarea><?php echo $new_arr; ?></textarea>
+					<p><?php echo $str; ?></p>
+					<button class="subscribe">отправить</button>
+				</form>
+				<a href="lab3.php">предыдущая лабораторная№3</a> <br><br>
+				<a href="">следующая лабораторная№5</a>
+			</div>
 		</main>
          <footer>
             <div class="conteiner">
