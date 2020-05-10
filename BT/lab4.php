@@ -1,6 +1,5 @@
 <?php
 $str="";
-$new_arr="";
 if (count($_FILES['userfiles']) != 0){
 	$arr = $_FILES['userfiles']['name'];
 	$fileContent = file_get_contents($arr);
@@ -20,6 +19,7 @@ if (count($_FILES['userfiles']) != 0){
 	}
 	$str = implode(" ", $new_arr);
 	$new_arr = implode("\n", $arr2);
+	
 }
 
  ?>
@@ -74,7 +74,7 @@ if (count($_FILES['userfiles']) != 0){
 					<button class="subscribe">отправить</button>
 				</form>
 				<a href="lab3.php">предыдущая лабораторная№3</a> <br><br>
-				<a href="">следующая лабораторная№5</a>
+				<a href="lab6.php">следующая лабораторная№6</a>
 			</div>
 		</main>
          <footer>
