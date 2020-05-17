@@ -74,7 +74,7 @@ if (count($_FILES['userfiles']) != 0){
 					<button class="subscribe">отправить</button>
 				</form>
 				<a href="lab3.php">предыдущая лабораторная№3</a> <br><br>
-				<a href="lab6.php">следующая лабораторная№6</a>
+				<a href="lab5.php">следующая лабораторная№6</a>
 			</div>
 		</main>
          <footer>
