@@ -109,8 +109,8 @@
  					</select><br>
 					<button class="subscribe">отправить</button>
 				</form>
-				<a href="lab4.php">предыдущая лабораторная№5</a> <br><br>
-				<a href="">следующая лабораторная№7</a>
+				<a href="lab5.php">предыдущая лабораторная№5</a> <br><br>
+				<a href="lab7.php">следующая лабораторная№7</a>
 			</div>
 		</main>
          <footer>
