@@ -1,28 +1,3 @@
-<?php
-$str="";
-if (count($_FILES['userfiles']) != 0){
-	$arr = $_FILES['userfiles']['name'];
-	$fileContent = file_get_contents($arr);
-    $email = '/([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,3}$/';
-	$arr = explode(" ",$fileContent);
-	$i = 0;
-	$j = 0;
-	foreach($arr as $word){
-		if(preg_match($email,$word)){
-			$new_arr[$i] = "<a  href='mailto:$word' style='color:Red;'>$word</a>";
-			$arr2[$j] = $word;
-			$j ++;
-		}else{
-			$new_arr[$i] = $word;
-		}		
-		$i++;
-	}
-	$str = implode(" ", $new_arr);
-	$new_arr = implode("\n", $arr2);
-	
-}
-
- ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -63,18 +38,15 @@ if (count($_FILES['userfiles']) != 0){
         </header>
 		<main>
 			<div class="conteiner">
-				<h1>Лабораторная работа №4</h1>
+				<h1>Лабораторная работа №8</h1>
 				<b>
-					<p>в произвольном тексте все e-mail адреса вывести красным цветом и привести к виду "a  href="mailto:EMAIL>EMAIL  /a". Дополнительно, в отдельном блоке вывести отдельно все e-mail адреса.Текст загружать из файла.</p>
+					<p> Написать скрипт, собирающий статистику по ip-адресам, с которых посетители заходили на сайт. Выводить результаты в виде HTML-таблицы со списком ip-аресов, отсортированным по убыванию количества посещений с каждого адреса.</p>
 				</b>
-				<form class="comment" action="" method="post" enctype="multipart/form-data">
-					<input type="file" name="userfiles" placeholder="введите имя файла"><br>
-					<textarea><?php echo $new_arr; ?></textarea>
-					<p><?php echo $str; ?></p>
-					<button class="subscribe">отправить</button>
-				</form>
-				<a href="lab3.php">предыдущая лабораторная№3</a> <br><br>
-				<a href="lab5.php">следующая лабораторная№6</a>
+				<table>
+					<?php include  'stats8lab.php'; ?>	
+					
+				</table>
+				<a href="lab7.php">предыдущая лабораторная№7</a>
 			</div>
 		</main>
          <footer>
